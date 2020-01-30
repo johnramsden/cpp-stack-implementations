@@ -29,67 +29,60 @@ timeFunc(const std::function<void()>& f, const string& name) {
     return duration;
 }
 
+template<typename T>
+void
+addData(Stack<T> & stack) {
+    for (int i = 0; i < MAX_STACK; i++) {
+        T b = {};
+        stack.push(b);
+    }
+
+    for (int i = 0; i < POP_STACK; i++) {
+        T b = {};
+        stack.push(b);
+        stack.pop();
+        stack.pop();
+    }
+}
+
+template<typename T>
+void
+fillAndEmpty(Stack<T> & stack) {
+    for (int i = 0; i < MAX_STACK; i++) {
+        T b = {};
+        stack.push(b);
+    }
+
+    while (!stack.empty()) {
+        stack.pop();
+    }
+}
+
+//template void bigData<bigArray>(Stack<bigArray> &stack);
+
 int main() {
 
     cout << "| Vector Stack | Time (ms) |" << endl;
     cout << "|:-------|:------|" << endl;
 
     timeFunc([]() {
-        VecStack<bigArray> stack;
-
-        for (int i = 0; i < MAX_STACK; i++) {
-            bigArray b = {};
-            stack.push(b);
-        }
-
-        for (int i = 0; i < POP_STACK; i++) {
-            bigArray b = {};
-            stack.push(b);
-            stack.pop();
-            stack.pop();
-        }
+        VecStack<bigArray> s;
+        addData(s);
     }, "Big data");
 
     timeFunc([]() {
-        VecStack<int> stack;
-
-        for (int i = 0; i < MAX_STACK; i++) {
-            int b = {};
-            stack.push(b);
-        }
-
-        for (int i = 0; i < POP_STACK; i++) {
-            int b = {};
-            stack.push(b);
-            stack.pop();
-            stack.pop();
-        }
-    }, "Small data");
-
-    timeFunc([]() {
         VecStack<bigArray> stack;
-
-        for (int i = 0; i < MAX_STACK; i++) {
-            bigArray b = {};
-            stack.push(b);
-        }
-
-        while (!stack.empty()) {
-            stack.pop();
-        }
+        fillAndEmpty(stack);
     }, "Big data fill and empty");
 
     timeFunc([]() {
-        VecStack<int> stack;
+        VecStack<int> s;
+        addData(s);
+    }, "Small data");
 
-        for (int i = 0; i < MAX_STACK; i++) {
-            int b = {};
-            stack.push(b);
-        }
-
-        while (!stack.empty()) {
-            stack.pop();
-        }
+    timeFunc([]() {
+        VecStack<int> s;
+        fillAndEmpty(s);
     }, "Small data fill and empty");
 
     cout << endl;
@@ -97,60 +90,22 @@ int main() {
     cout << "|:-------|:------|" << endl;
 
     timeFunc([]() {
-        LinkedStack<bigArray> stack;
-
-        for (int i = 0; i < MAX_STACK; i++) {
-            bigArray b = {};
-            stack.push(b);
-        }
-
-        for (int i = 0; i < POP_STACK; i++) {
-            bigArray b = {};
-            stack.push(b);
-            stack.pop();
-            stack.pop();
-        }
+        LinkedStack<bigArray> s;
+        addData(s);
     }, "Big data");
 
     timeFunc([]() {
-        LinkedStack<int> stack;
-
-        for (int i = 0; i < MAX_STACK; i++) {
-            int b = {};
-            stack.push(b);
-        }
-
-        for (int i = 0; i < POP_STACK; i++) {
-            int b = {};
-            stack.push(b);
-            stack.pop();
-            stack.pop();
-        }
-    }, "Small data");
-
-    timeFunc([]() {
         LinkedStack<bigArray> stack;
-
-        for (int i = 0; i < MAX_STACK; i++) {
-            bigArray b = {};
-            stack.push(b);
-        }
-
-        while (!stack.empty()) {
-            stack.pop();
-        }
+        fillAndEmpty(stack);
     }, "Big data fill and empty");
 
     timeFunc([]() {
-        LinkedStack<int> stack;
+        LinkedStack<int> s;
+        addData(s);
+    }, "Small data");
 
-        for (int i = 0; i < MAX_STACK; i++) {
-            int b = {};
-            stack.push(b);
-        }
-
-        while (!stack.empty()) {
-            stack.pop();
-        }
+    timeFunc([]() {
+        LinkedStack<int> s;
+        fillAndEmpty(s);
     }, "Small data fill and empty");
 }

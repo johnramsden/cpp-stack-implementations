@@ -2,9 +2,10 @@
 #define STACK_VECSTACK_H
 
 #include <vector>
+#include "Stack.h"
 
 template <class T>
-class VecStack {
+class VecStack: public Stack<T> {
     public:
         void push (const T& val);
         T pop ();

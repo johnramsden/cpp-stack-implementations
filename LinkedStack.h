@@ -4,7 +4,7 @@
 #include <list>
 
 template <class T>
-class LinkedStack {
+class LinkedStack: public Stack<T> {
     public:
     void push (const T& val);
     T pop ();
