@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <chrono>
 #include <iostream>
-
+#include <functional>
 using namespace std;
 using namespace std::chrono;
 

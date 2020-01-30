@@ -11,28 +11,29 @@ class VecStack {
         bool empty();
     private:
         std::vector<T> stack;
-        int top;
+        int todelete = 0;
 };
 
 
 template<class T>
 void
 VecStack<T>::push(const T &val) {
+    stack.erase(stack.end()-todelete, stack.end());
+    todelete = 0;
     stack.push_back(val);
 }
 
 template<class T>
 T
 VecStack<T>::pop() {
-    auto v = stack[stack.size()-1];
-    stack.pop_back();
-    return v;
+    todelete++;
+    return *(stack.end()-todelete);
 }
 
 template<class T>
 bool
 VecStack<T>::empty() {
-    return stack.empty();
+    return (stack.size() == todelete);
 }
 
 #endif //STACK_VECSTACK_H
