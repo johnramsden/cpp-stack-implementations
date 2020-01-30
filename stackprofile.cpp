@@ -1,7 +1,6 @@
 #include "VecStack.h"
 #include "LinkedStack.h"
 
-#include <algorithm>
 #include <chrono>
 #include <iostream>
 #include <functional>
@@ -9,8 +8,8 @@ using namespace std;
 using namespace std::chrono;
 
 #define ARRAY_SIZE 8096
-#define MAX_STACK 8096
-#define POP_STACK 4096
+#define MAX_STACK 100000
+#define POP_STACK 50000
 
 typedef struct {
     int data[ARRAY_SIZE];
@@ -25,7 +24,7 @@ timeFunc(const std::function<void()>& f, const string& name) {
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
-    cout << "| " << name << " | " << duration.count() << " |" << endl;
+    cout << "| " << name << " | " << duration.count() / 1000.0 << " |" << endl;
 
     return duration;
 }
