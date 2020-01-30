@@ -3,7 +3,7 @@ project(stack)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(stackprofile VecStack.h LinkedStack.h Stack.h stackprofile.cpp)
+add_executable(stackprofile VecStack.h LinkedStack.h Stack.h DequeStack.h stackprofile.cpp)
 
 # For gprof profiling
 #target_compile_options(stackprofile PRIVATE -pg)

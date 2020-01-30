@@ -1,9 +1,11 @@
 #include "VecStack.h"
 #include "LinkedStack.h"
+#include "DequeStack.h"
 
 #include <chrono>
 #include <iostream>
 #include <functional>
+
 using namespace std;
 using namespace std::chrono;
 
@@ -106,6 +108,30 @@ int main() {
 
     timeFunc([]() {
         LinkedStack<int> s;
+        fillAndEmpty(s);
+    }, "Small data fill and empty");
+    cout << endl;
+
+    cout << "| Deque Stack | Time (ms) |" << endl;
+    cout << "|:-------|:------|" << endl;
+
+    timeFunc([]() {
+        DequeStack<bigArray> s;
+        addData(s);
+    }, "Big data");
+
+    timeFunc([]() {
+        DequeStack<bigArray> stack;
+        fillAndEmpty(stack);
+    }, "Big data fill and empty");
+
+    timeFunc([]() {
+        DequeStack<int> s;
+        addData(s);
+    }, "Small data");
+
+    timeFunc([]() {
+        DequeStack<int> s;
         fillAndEmpty(s);
     }, "Small data fill and empty");
 }
